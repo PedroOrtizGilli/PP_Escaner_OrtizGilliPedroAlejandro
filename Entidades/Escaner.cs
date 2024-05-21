@@ -69,12 +69,27 @@ namespace Entidades
         public static bool operator ==(Escaner e, Documento d)
         {
             bool retorno = false;
+            if ((d == null) || (e == null))
+            {
+                return false;
+            }
             foreach (Documento documento in e.listaDocumentos)
             {
-                if (documento == d)
+                if (documento is Libro && d is Libro)
                 {
-                    retorno = true;
-                    break;
+                    if ((Libro)d == (Libro)documento)
+                    {
+                        retorno = true;
+                        break;
+                    }
+                }
+                else if (documento is Mapa && d is Mapa)
+                {
+                    if ((Mapa)d == (Mapa)documento)
+                    {
+                        retorno = true;
+                        break;
+                    }
                 }
             }
             return retorno;
@@ -86,6 +101,10 @@ namespace Entidades
         public static bool operator +(Escaner e, Documento d)
         {
             bool retorno = false;
+            if ((d == null) || (e == null))
+            {
+                return false;
+            }
             if (e != d)
             {
                 if (d.GetEstado == Documento.Paso.Inicio)
@@ -136,13 +155,6 @@ namespace Entidades
                 Console.WriteLine(ex.ToString());
                 return false;
             }
-            /*
-             if (this == doc)
-            {
-                retorno = true;
-                doc.AvanzarEstado();
-            }
-            */
         }
     }
 }
