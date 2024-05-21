@@ -16,15 +16,17 @@ namespace Test
             string resumen;
 
             Libro libro1 = new Libro("Dune", "Herbert, Frank", 1956, "1111", "000000", 784);
-            Mapa mapa1 = new Mapa("America", "Colon, Cristobal", 1400, "000001", 100, 50);
+            Mapa mapa1 = new Mapa("America", "Colon, Cristobal", 1400, "", "000001", 100, 50);
+            Mapa mapa2 = new Mapa(null, null, 0, null, null, 0, 0);
 
             Escaner escanerMapas = new Escaner("Sony", Escaner.TipoDoc.mapa);
             Escaner escanerLibros = new Escaner("Samsung", Escaner.TipoDoc.libro);
-
+            escanerMapas.CambiarEstadoDeDocumento(libro1);
+            Console.WriteLine(mapa2.GetTitulo);
             bool agregarDocumento = escanerLibros + libro1;
             bool agregarOtroDocumento = escanerMapas + mapa1;
 
-            Informes.MostrarDistribuidos(escanerMapas,out extensionDocumento,out cantidadDocumentos,out resumen);
+            Informes.MostrarDistribuidos(escanerMapas, out extensionDocumento, out cantidadDocumentos, out resumen);
             Console.WriteLine($"Escaner Mapas:\n\tCantidad: {cantidadDocumentos}\n" +
                               $"\tExtension: {extensionDocumento}\n" +
                               $"\tResumen: {resumen}");

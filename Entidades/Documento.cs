@@ -82,7 +82,7 @@ namespace Entidades
         /*
         Con StringBuilder creo la cadena de datos que muestro en consola.
         */
-        public virtual string ToString()
+        public override string ToString()
         {
             StringBuilder datos = new StringBuilder();
             datos.AppendLine($"Título: {this.titulo}");

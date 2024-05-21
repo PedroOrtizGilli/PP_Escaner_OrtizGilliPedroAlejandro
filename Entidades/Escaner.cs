@@ -113,21 +113,29 @@ namespace Entidades
 
         /*
         Metodo:
-            Avanza el estado del documento desde la lista.
+            Avanza el estado del documento desde la lista. // Validar que no este el documento en la lista.
         */
         public bool CambiarEstadoDeDocumento(Documento doc)
         {
-            bool retorno = false;
-            foreach (Documento documento in this.listaDocumentos)
+            try
             {
-                if (doc == documento)
+                bool retorno = false;
+                foreach (Documento documento in this.listaDocumentos)
                 {
-                    retorno = true;
-                    doc.AvanzarEstado();
-                    break;
+                    if (doc == documento)
+                    {
+                        retorno = true;
+                        doc.AvanzarEstado();
+                        break;
+                    }
                 }
+                return retorno;
             }
-            return retorno;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
             /*
              if (this == doc)
             {

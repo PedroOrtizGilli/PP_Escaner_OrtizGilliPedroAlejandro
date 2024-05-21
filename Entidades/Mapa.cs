@@ -13,7 +13,7 @@ namespace Entidades
         int ancho;
 
         // Constructor:
-        public Mapa(string titulo, string autor, int anio, string barcode, int alto, int ancho, string numNormalizado = null)
+        public Mapa(string titulo, string autor, int anio, string numNormalizado, string barcode, int alto, int ancho)
             : base(titulo, autor, anio, numNormalizado, barcode)
         {
             this.alto = alto;
