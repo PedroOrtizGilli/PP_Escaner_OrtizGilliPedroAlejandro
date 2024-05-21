@@ -29,10 +29,6 @@ namespace Test
             bool agregarDocumento = escanerLibros + libro1;
             bool agregarOtroDocumento = escanerLibros + mapa1;
             bool agregar = escanerMapas + null;
-            if (libro1 == libro2)
-            {
-
-            }
 
             Informes.MostrarDistribuidos(escanerLibros, out extensionDocumento, out cantidadDocumentos, out resumen);
             Console.WriteLine($"Escaner Mapas:\n\tCantidad: {cantidadDocumentos}\n" +

@@ -57,7 +57,7 @@ namespace Entidades
             StringBuilder datos = new StringBuilder();
             datos.Append(base.ToString());
             datos.AppendLine($"Cod. de barras: {this.GetBarcode}");
-            datos.AppendLine($"Superficie: {this.GetSuperficie}");
+            datos.AppendLine($"Superficie: {this.ancho} * {this.alto} = {this.GetSuperficie} cm2.");
             return datos.ToString();
         }
     }

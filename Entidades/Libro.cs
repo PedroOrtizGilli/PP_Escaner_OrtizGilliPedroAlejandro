@@ -52,7 +52,7 @@ namespace Entidades
             datos.Append(base.ToString());
             datos.AppendLine($"ISBN: {this.GetISBN}");
             datos.AppendLine($"Cod. de barras: {this.GetBarcode}");
-            datos.AppendLine($"Número de páginas: {this.GetNumPaginas}");
+            datos.AppendLine($"Número de páginas: {this.GetNumPaginas}.");
             return datos.ToString();
         }
     }
