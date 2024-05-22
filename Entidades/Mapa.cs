@@ -40,9 +40,9 @@ namespace Entidades
         */
         public static bool operator ==(Mapa mapa1, Mapa mapa2)
         {
-            return ((mapa1.GetBarcode == mapa2.GetBarcode) ||
+            return (mapa1.GetBarcode == mapa2.GetBarcode) ||
                 (mapa1.GetTitulo == mapa2.GetTitulo) && (mapa1.GetAutor == mapa2.GetAutor) &&
-                (mapa1.GetAnio == mapa2.GetAnio) && (mapa1.GetSuperficie == mapa2.GetSuperficie));
+                (mapa1.GetAnio == mapa2.GetAnio) && (mapa1.GetSuperficie == mapa2.GetSuperficie);
         }
         public static bool operator !=(Mapa mapa1, Mapa mapa2)
         {

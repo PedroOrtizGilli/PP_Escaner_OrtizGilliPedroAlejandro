@@ -38,6 +38,7 @@ namespace Entidades
             extension = 0;
             cantidad = 0;
             resumen = "";
+            StringBuilder datos = new StringBuilder();
             foreach (Documento doc in escaner.GetListaDocumentos)
             {
                 if (estado == Documento.Paso.Inicio)
@@ -48,7 +49,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += mapa.GetSuperficie;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(mapa.ToString());
                         }
                     }
                     else
@@ -57,7 +58,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += libro.GetNumPaginas;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(libro.ToString());
                         }
                     }
                 }
@@ -69,7 +70,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += mapa.GetSuperficie;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(mapa.ToString());
                         }
                     }
                     else
@@ -77,8 +78,8 @@ namespace Entidades
                         if (doc is Libro libro)
                         {
                             cantidad++;
-                            extension += libro.GetNumPaginas; 
-                            resumen += doc.GetTitulo;
+                            extension += libro.GetNumPaginas;
+                            datos.AppendLine(libro.ToString());
                         }
                     }
                 }
@@ -90,7 +91,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += mapa.GetSuperficie;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(mapa.ToString());
                         }
                     }
                     else
@@ -99,7 +100,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += libro.GetNumPaginas;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(libro.ToString());
                         }
                     }
                 }
@@ -111,7 +112,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += mapa.GetSuperficie;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(mapa.ToString());
                         }
                     }
                     else
@@ -120,7 +121,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += libro.GetNumPaginas;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(libro.ToString());
                         }
                     }
                 }
@@ -132,7 +133,7 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += mapa.GetSuperficie;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(mapa.ToString());
                         }
                     }
                     else
@@ -141,11 +142,12 @@ namespace Entidades
                         {
                             cantidad++;
                             extension += libro.GetNumPaginas;
-                            resumen += doc.GetTitulo;
+                            datos.AppendLine(libro.ToString());
                         }
                     }
                 }
             }
+            resumen += datos;
         }
     }
 }

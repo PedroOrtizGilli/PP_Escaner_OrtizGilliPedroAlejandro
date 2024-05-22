@@ -34,9 +34,9 @@ namespace Entidades
         */
         public static bool operator ==(Libro libro1, Libro libro2)
         {
-            return ((libro1.GetBarcode == libro2.GetBarcode) ||
+            return (libro1.GetBarcode == libro2.GetBarcode) ||
                 (libro1.GetISBN == libro2.GetISBN) ||
-                ((libro1.GetTitulo == libro2.GetTitulo) && (libro1.GetAutor == libro2.GetAutor)));
+                ((libro1.GetTitulo == libro2.GetTitulo) && (libro1.GetAutor == libro2.GetAutor));
         }
         public static bool operator !=(Libro libro1, Libro libro2)
         {
