@@ -48,9 +48,17 @@ namespace Test
             pudo = m + m4;
             pudo = m + m5;
             pudo = m + m6;
-            pudo = m + l1;
-            pudo = l + m1;
-            pudo = l + m2;
+            try
+            {
+                pudo = m + l1;
+                pudo = l + m1;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
 
             l1.AvanzarEstado();
             l1.AvanzarEstado();
