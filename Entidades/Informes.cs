@@ -16,7 +16,7 @@ namespace Entidades
     {
         public static void MostrarDistribuidos(Escaner escaner, out int extension, out int cantidad, out string resumen)
         {
-            MostrarDocumentosPorEstado(escaner, Documento.Paso.Distribuido,out extension,out cantidad,out resumen);
+            MostrarDocumentosPorEstado(escaner, Documento.Paso.Distribuido, out extension, out cantidad, out resumen);
         }
         public static void MostrarEnEscaner(Escaner escaner, out int extension, out int cantidad, out string resumen)
         {
@@ -38,116 +38,37 @@ namespace Entidades
             extension = 0;
             cantidad = 0;
             resumen = "";
-            StringBuilder datos = new StringBuilder();
+            List<Documento> listaDistribuidos = new List<Documento>();
+
+            // Extension: el total de paginas en el caso de los libros y el total de cm2 en el caso de los
+            // mapas.
             foreach (Documento doc in escaner.GetListaDocumentos)
             {
-                if (estado == Documento.Paso.Inicio)
+                if (doc.GetEstado == estado)
                 {
-                    if (escaner.GetTipoDocumento == Escaner.TipoDoc.mapa)
+                    if (doc is Libro)
                     {
-                        if (doc is Mapa mapa)
-                        {
-                            cantidad++;
-                            extension += mapa.GetSuperficie;
-                            datos.AppendLine(mapa.ToString());
-                        }
+                        Libro libro = (Libro)doc;
+                        extension += libro.GetNumPaginas;
                     }
                     else
                     {
-                        if (doc is Libro libro)
-                        {
-                            cantidad++;
-                            extension += libro.GetNumPaginas;
-                            datos.AppendLine(libro.ToString());
-                        }
-                    }
-                }
-                else if (estado == Documento.Paso.Distribuido)
-                {
-                    if (escaner.GetTipoDocumento == Escaner.TipoDoc.mapa)
-                    {
                         if (doc is Mapa mapa)
                         {
-                            cantidad++;
+                            //Mapa mapa = (Mapa)doc;
                             extension += mapa.GetSuperficie;
-                            datos.AppendLine(mapa.ToString());
                         }
                     }
-                    else
-                    {
-                        if (doc is Libro libro)
-                        {
-                            cantidad++;
-                            extension += libro.GetNumPaginas;
-                            datos.AppendLine(libro.ToString());
-                        }
-                    }
-                }
-                else if (estado == Documento.Paso.EnEscaner)
-                {
-                    if (escaner.GetTipoDocumento == Escaner.TipoDoc.mapa)
-                    {
-                        if (doc is Mapa mapa)
-                        {
-                            cantidad++;
-                            extension += mapa.GetSuperficie;
-                            datos.AppendLine(mapa.ToString());
-                        }
-                    }
-                    else
-                    {
-                        if (doc is Libro libro)
-                        {
-                            cantidad++;
-                            extension += libro.GetNumPaginas;
-                            datos.AppendLine(libro.ToString());
-                        }
-                    }
-                }
-                else if (estado == Documento.Paso.EnRevision)
-                {
-                    if (escaner.GetTipoDocumento == Escaner.TipoDoc.mapa)
-                    {
-                        if (doc is Mapa mapa)
-                        {
-                            cantidad++;
-                            extension += mapa.GetSuperficie;
-                            datos.AppendLine(mapa.ToString());
-                        }
-                    }
-                    else
-                    {
-                        if (doc is Libro libro)
-                        {
-                            cantidad++;
-                            extension += libro.GetNumPaginas;
-                            datos.AppendLine(libro.ToString());
-                        }
-                    }
-                }
-                else if (estado == Documento.Paso.Terminado)
-                {
-                    if (escaner.GetTipoDocumento == Escaner.TipoDoc.mapa)
-                    {
-                        if (doc is Mapa mapa)
-                        {
-                            cantidad++;
-                            extension += mapa.GetSuperficie;
-                            datos.AppendLine(mapa.ToString());
-                        }
-                    }
-                    else
-                    {
-                        if (doc is Libro libro)
-                        {
-                            cantidad++;
-                            extension += libro.GetNumPaginas;
-                            datos.AppendLine(libro.ToString());
-                        }
-                    }
+                    cantidad++;
+                    listaDistribuidos.Add(doc);
+                    resumen += doc.ToString();
                 }
             }
-            resumen += datos;
+
+            if (listaDistribuidos.Count == 0)
+            {
+                resumen = "";
+            }
         }
     }
 }

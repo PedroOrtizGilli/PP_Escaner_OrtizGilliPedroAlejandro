@@ -91,6 +91,10 @@ namespace Entidades
                         break;
                     }
                 }
+                else
+                {
+                    throw new TipoIncorrectoExcepcion("Este escáner no acepta este tipo de documento", "Escaner", "==");
+                }
             }
             return retorno;
         }
@@ -101,31 +105,40 @@ namespace Entidades
         public static bool operator +(Escaner e, Documento d)
         {
             bool retorno = false;
-            if ((d == null) || (e == null))
+            try
             {
-                return false;
-            }
-            if (e != d)
-            {
-                if (d.GetEstado == Documento.Paso.Inicio)
+                if ((d == null) || (e == null))
                 {
-                    if ((e.tipo == Escaner.TipoDoc.mapa) && (d is Mapa))
+                    return false;
+                }
+                if (e != d)
+                {
+                    if (d.GetEstado == Documento.Paso.Inicio)
                     {
-                        d.AvanzarEstado();
-                        e.listaDocumentos.Add(d);
-                        retorno = true;
-                    }
-                    else if ((e.tipo == Escaner.TipoDoc.libro) && (d is Libro))
-                    {
-                        d.AvanzarEstado();
-                        e.listaDocumentos.Add(d);
-                        retorno = true;
-                    }
-                    else
-                    {
-                        retorno = false;
+                        if ((e.tipo == Escaner.TipoDoc.mapa) && (d is Mapa))
+                        {
+                            d.AvanzarEstado();
+                            e.listaDocumentos.Add(d);
+                            retorno = true;
+                        }
+                        else if ((e.tipo == Escaner.TipoDoc.libro) && (d is Libro))
+                        {
+                            d.AvanzarEstado();
+                            e.listaDocumentos.Add(d);
+                            retorno = true;
+                        }
+                        else
+                        {
+                            retorno = false;
+                            throw new TipoIncorrectoExcepcion("El documento no se pudo añadir a la lista",
+                                "Escaner", "+");
+                        }
                     }
                 }
+            }
+            catch(TipoIncorrectoExcepcion ex)
+            {
+                throw new TipoIncorrectoExcepcion("El documento no se pudo añadir a la lista", "Escaner", "+", ex);
             }
             return retorno;
         }
